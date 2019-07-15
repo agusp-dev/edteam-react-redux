@@ -10,7 +10,7 @@ const CartCounter = ({cart}) => (
 //Mapea el estado global de la app y se le pasa al componente como propiedad
 const mapStateToProps = state => (
     {
-        cart: state.cart
+        cart: state.cartReducer.cart
     }
 )
 

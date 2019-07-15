@@ -1,29 +1,13 @@
-import React, {Component} from 'react'
-import axios from 'axios';
+import React from 'react'
 import CourseGrid from '../organisms/CourseGrid';
+import { connect } from 'react-redux'
 
-class Courses extends Component {
+const Courses = ({courses}) => <CourseGrid courses={courses} />
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            courses: []
-        }
+const mapStateToProps = state => (
+    {
+        courses: state.coursesReducer.courses
     }
+)
 
-    componentDidMount() {
-        axios.get('http://demo2943031.mockable.io/courses')
-        .then(resp => (
-            this.setState({
-                courses: resp.data
-            })
-        ))
-    }
-
-    render() {
-        return <CourseGrid courses={this.state.courses} />
-    }
-}
-
-export default Courses
+export default connect(mapStateToProps, {})(Courses)
